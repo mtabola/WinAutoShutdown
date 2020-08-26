@@ -2,9 +2,9 @@
 
 #include "wnd/wnd.h"
 
-#define SHUTDOWNHOUR 21
-#define SHUTDOWMINUTE 35
-#define MINUTEINMSEC 60000
+#define SHUTDOWNHOUR 21U
+#define SHUTDOWMINUTE 35U
+#define MINUTEINMSEC 60000U
 
 
 
@@ -40,7 +40,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine
         time(&currSecs);
         info = localtime(&currSecs);
 
-        if (info->tm_hour >= SHUTDOWNHOUR && info->tm_min >= SHUTDOWMINUTE)
+        if (info->tm_hour > SHUTDOWNHOUR || (info->tm_hour >= SHUTDOWNHOUR && info->tm_min >= SHUTDOWMINUTE))
         {
 
             alertThread = CreateThread(NULL, 0, AttantionMsgBox, &mbinfoArr[1], 0, 0);
